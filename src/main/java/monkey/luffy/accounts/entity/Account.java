@@ -8,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@Data {
+        
+    }
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
