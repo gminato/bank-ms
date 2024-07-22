@@ -1,5 +1,7 @@
 package monkey.luffy.accounts.mapper;
 
+import java.util.Date;
+
 import monkey.luffy.accounts.dto.CustomerDto;
 import monkey.luffy.accounts.entity.Customer;
 
@@ -16,6 +18,8 @@ public class CustomerMapper {
         customer.setName(customerDto.getName());
         customer.setEmail(customerDto.getEmail());
         customer.setMobileNumber(customerDto.getMobileNumber());
+        customer.setCreatedAt(new Date());
+        customer.setCreatedBy("test");
         return customer;
     }
 
