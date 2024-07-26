@@ -24,6 +24,6 @@ public class Customer {
     private String createdBy;
     private Date updatedAt;
     private String updatedBy;
+    // private AccountsDto accountsDto; 
 
-    // Getters and setters
 }
