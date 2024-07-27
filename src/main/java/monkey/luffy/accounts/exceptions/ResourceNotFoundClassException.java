@@ -3,7 +3,10 @@ package monkey.luffy.accounts.exceptions;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import lombok.AllArgsConstructor;
+
 @ResponseStatus(HttpStatus.BAD_REQUEST)
+@AllArgsConstructor
 public class ResourceNotFoundClassException extends RuntimeException{
 
     public ResourceNotFoundClassException(String resourceName,String fieldName,String fieldValue) {

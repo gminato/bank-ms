@@ -40,6 +40,7 @@ public class AccountServiceImpl implements IAccountService {
         Customer customer = CustomerMapper.mapToCustomer(customerDto, new Customer());
         Customer savedCustomer =  customerRepository.save(customer);
         accountRepository.save(createNewAccount(savedCustomer));
+        // TODO remove customer detail if customer is created and thows and error while creating account
     }
 
     private Account createNewAccount(Customer customer) {
@@ -49,6 +50,7 @@ public class AccountServiceImpl implements IAccountService {
         newAccount.setAccountType("saving");
         newAccount.setBranchAddress("test address");
         newAccount.setCreatedAt(new Date());
+        newAccount.setCreatedBy("anonmynous");
         return newAccount;
     }
 
@@ -65,6 +67,19 @@ public class AccountServiceImpl implements IAccountService {
         customerDto.setAccountsDto(accountsDto);
 
         return customerDto; 
+    }
+
+    @Override
+    public Boolean updateAccountDetail(CustomerDto customerDto) {
+        AccountsDto accountsDto = customerDto.getAccountsDto();
+        int accountID = accountsDto.getAccountNumber();
+        Account account = accountRepository.findById(accountID).orElseThrow(() -> new ResourceNotFoundClassException("Account","account id ",String.valueOf(accountID)));
+        AccountMapper.mapToAccount(account, accountsDto);
+        accountRepository.save(account);
+        Customer customer = customerRepository.findByMobileNumber(customerDto.getMobileNumber()) .orElseThrow(() -> new ResourceNotFoundClassException("Customer","Mobile number",customerDto.getMobileNumber()));
+        CustomerMapper.mapToCustomer(customerDto,customer);
+        customerRepository.save(customer);
+        return true;
     }
     
 }

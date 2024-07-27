@@ -10,4 +10,6 @@ public interface IAccountService {
     void createAccount(CustomerDto customerDto);
 
     CustomerDto findByMobileNumber(String mobileNumber);
+
+    Boolean updateAccountDetail(CustomerDto customerDto);
 }
