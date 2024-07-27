@@ -12,4 +12,6 @@ public interface IAccountService {
     CustomerDto findByMobileNumber(String mobileNumber);
 
     Boolean updateAccountDetail(CustomerDto customerDto);
+
+    Boolean deleteAccount(String mobileNum);
 }

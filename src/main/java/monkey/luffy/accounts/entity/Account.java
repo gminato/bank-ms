@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class Account {
     @Id
-    private int accountNumber;
+    private Integer accountNumber;
 
     private int customerId;
     private String accountType;
