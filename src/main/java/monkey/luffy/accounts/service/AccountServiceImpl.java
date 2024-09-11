@@ -27,6 +27,7 @@ public class AccountServiceImpl implements IAccountService {
 
     /**
      * @param customerDto - CustomerDto Object
+     * @throws CustomerAlreadyExistsException
      */
     @Override
     public void createAccount(CustomerDto customerDto) {
@@ -46,11 +47,10 @@ public class AccountServiceImpl implements IAccountService {
     private Account createNewAccount(Customer customer) {
         Account newAccount = new Account();
         newAccount.setCustomerId(customer.getCustomerId());
-        newAccount.setAccountNumber(new Random().nextInt(9000000));
+        // generate random account number 10 digit
+        newAccount.setAccountNumber(new Random().nextInt(1000000000));
         newAccount.setAccountType("saving");
         newAccount.setBranchAddress("test address");
-        newAccount.setCreatedAt(new Date());
-        newAccount.setCreatedBy("anonmynous");
         return newAccount;
     }
 

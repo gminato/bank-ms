@@ -19,7 +19,6 @@ public class CustomerMapper {
         customer.setEmail(customerDto.getEmail());
         customer.setMobileNumber(customerDto.getMobileNumber());
         customer.setCreatedAt(new Date());
-        customer.setCreatedBy("test");
         return customer;
     }
 
