@@ -3,6 +3,7 @@ package monkey.luffy.accounts.controller;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import monkey.luffy.accounts.dto.CustomerDto;
 import monkey.luffy.accounts.dto.ResponseDto;
@@ -38,7 +39,9 @@ public class AccountsController {
     }
 
     @GetMapping("/fetch")
-    public ResponseEntity<CustomerDto> fetchAccountDetails(@RequestParam(name="mobilenum") String mobileNumber){
+    public ResponseEntity<CustomerDto> fetchAccountDetails(@RequestParam(name="mobilenum")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number should be 10 digit")
+    String mobileNumber){
         CustomerDto customerDto = iAccountService.findByMobileNumber(mobileNumber);
         return ResponseEntity.status(HttpStatus.OK)
         .body(customerDto);
@@ -57,7 +60,9 @@ public class AccountsController {
     }
 
     @DeleteMapping("/delete")
-    public ResponseEntity<ResponseDto> deleteCustomerAndAccount(@RequestParam(name="mobilenum") String mobileNumber) {
+    public ResponseEntity<ResponseDto> deleteCustomerAndAccount(@Valid @RequestParam(name="mobilenum")
+    @Pattern(regexp = "^[0-9]{10}$", message = "Mobile number should be 10 digit") 
+    String mobileNumber) {
         boolean deleteAccountSuccess = iAccountService.deleteAccount(mobileNumber);
         if(deleteAccountSuccess) {
             return ResponseEntity.status(HttpStatus.OK)

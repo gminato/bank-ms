@@ -19,6 +19,10 @@ public class CustomerMapper {
         customer.setEmail(customerDto.getEmail());
         customer.setMobileNumber(customerDto.getMobileNumber());
         customer.setCreatedAt(new Date());
+        customer.setUpdatedAt(new Date());
+        customer.setCreatedBy("system");
+        // 12 digit random number
+        // customer.setCustomerId((int) (Math.random() * 1000000000000L));
         return customer;
     }
 

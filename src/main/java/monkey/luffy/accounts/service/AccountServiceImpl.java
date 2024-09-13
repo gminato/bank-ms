@@ -36,7 +36,7 @@ public class AccountServiceImpl implements IAccountService {
             );
         System.out.println(customerRepository.findAll());
         if(optionalCustomer.isPresent()) {
-            throw new CustomerAlreadyExistsException("Customer already register with mobile number" + customerDto.getMobileNumber());
+            throw new CustomerAlreadyExistsException("Customer already register with mobile number " + customerDto.getMobileNumber());
         }
         Customer customer = CustomerMapper.mapToCustomer(customerDto, new Customer());
         Customer savedCustomer =  customerRepository.save(customer);
